@@ -43,6 +43,32 @@ str4 = "hello"
 
 str4.replacingOccurrences(of: "e", with: "k")
 
+// Optional chaining
+//str3!.replacingOccurrences(of: "x", with: "he")
+let test = str3?.replacingOccurrences(of: "x", with: "he")
+let test2 = test?.uppercased()
+
+let test3 = str3?.replacingOccurrences(of: "x", with: "e").uppercased()
+
+class Dog
+{
+	func bark()
+	{
+		print("woof")
+	}
+}
+
+let d1 = Dog()
+d1.bark()
+
+var d2 : Dog? = nil
+d2?.bark()
+
+d2 = Dog()
+d2?.bark()
+
+
+
 
 
 
