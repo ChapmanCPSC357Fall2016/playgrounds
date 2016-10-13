@@ -63,9 +63,7 @@ class Digit
 		// Dont study
 		
 		let numString = String(num)
-		let index = numString.index(numString.startIndex, offsetBy: idx)
-		
-		let numChar = numString[index]
+		let numChar = Array(numString.characters)[idx]
 		return Int(String(numChar))!
 	}
 }
@@ -82,13 +80,22 @@ enum WeekDay
 	case friday
 	case saturday
 	case sunday
-	
-	
 }
 
 var day: WeekDay
 day = WeekDay.monday
 day = .tuesday
+
+switch (day)
+{
+case .monday:
+	print("It's monday")
+case WeekDay.tuesday:
+	print("its tuesday")
+default:
+	print("It's another day")
+}
+
 
 let day2 = WeekDay.monday
 
@@ -130,6 +137,123 @@ class Week
 
 let myWeek = Week()
 print(myWeek[2])
+
+struct Horse
+{
+	var name : String
+	var age : Int
+}
+
+// Reference types (classes)
+let cat = Cat(name: "Jerry", age: 4)!
+let cat2 = cat
+
+cat2.name = "blah"
+
+cat
+cat2
+
+// Value types (structs)
+let horse = Horse(name: "Corey", age: 2)
+var horse2 = horse
+horse2.name = "John"
+
+horse
+
+horse2
+
+struct AppConstants
+{
+	static let APP_NAME = "My Application"
+	static let DB_NAME = "myapplication.sqlite"
+}
+
+print("Welcome to \(AppConstants.APP_NAME)")
+
+class Quadruped
+{
+	static let NUM_LEGS = 4
+	
+	var name: String
+	var age: Int
+
+	init(name: String, age: Int)
+	{
+		self.name = name
+		self.age = age
+	}
+	
+	convenience init(name : String)
+	{
+		self.init(name: name, age: 0)
+	}
+	
+	func walk()
+	{
+		print("Walk walk walk")
+	}
+}
+
+// Inheritance
+class Lion: Quadruped
+{
+	func roar()
+	{
+		print("Roar")
+	}
+}
+
+class Iguana: Quadruped
+{
+	override init(name: String, age: Int)
+	{
+		print("Making an iguana")
+		super.init(name: name, age: age)
+	}
+	
+	override func walk()
+	{
+		super.walk()
+		print("Waddle waddle waddle")
+	}
+	
+	func regenerateTail()
+	{
+		print("I'm regenerating")
+	}
+}
+
+var q = Quadruped(name: "animal", age: 2)
+
+let aLion = Lion(name: "Leo", age: 3)
+aLion.walk()
+
+let godzilla = Iguana(name: "Godzilla", age: 1)
+godzilla.walk()
+
+func doSomething(quad: Quadruped)
+{
+	quad.walk()
+	
+	if let lion = quad as? Lion
+	{
+		lion.roar()
+	}
+	else if let ig = quad as? Iguana
+	{
+		ig.regenerateTail()
+	}
+}
+
+print("\n-----\n")
+
+doSomething(quad: q)
+doSomething(quad: aLion)
+doSomething(quad: godzilla)
+
+
+
+
 
 
 
